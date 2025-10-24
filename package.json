@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "@langchain/community": "^0.3.57",
-    "@langchain/core": "^0.3.78",
+    "@langchain/core": "^1.0.1",
+    "@langchain/textsplitters": "^1.0.0",
     "next": "15.5.5",
     "pdf-parse": "^1.1.1",
     "react": "19.1.0",

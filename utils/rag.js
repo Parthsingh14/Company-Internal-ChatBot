@@ -1,9 +1,12 @@
-// rag.js
+// utils/rag.js
 import { indexTheDocument } from "@/utils/prepare";
 
 export const testRag = async () => {
   const filePath = "public/yash.pdf";
-  const docs = await indexTheDocument(filePath);
-  console.log(docs[0].pageContent);
-  return docs;
+  const chunks = await indexTheDocument(filePath);
+
+  console.log("Chunk count:", chunks.length);
+  console.log("First Chunk:\n", chunks[0]);
+
+  return chunks;
 };
