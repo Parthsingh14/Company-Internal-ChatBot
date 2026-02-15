@@ -9,8 +9,9 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@langchain/community": "^0.3.28",
+    "@langchain/community": "^1.1.15",
     "@langchain/core": "^0.3.79",
+    "langchain": "^0.3.28",
     "next": "16.1.6",
     "pdf-parse": "^1.1.1",
     "react": "19.2.3",
