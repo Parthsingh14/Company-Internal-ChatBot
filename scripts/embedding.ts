@@ -10,5 +10,9 @@ export async function createEmbedding(text: string) {
     contents: [text],
   });
 
+  if (!response.embeddings || response.embeddings.length === 0) {
+    throw new Error("No embeddings returned from API");
+  }
+
   return response.embeddings[0].values;
 }

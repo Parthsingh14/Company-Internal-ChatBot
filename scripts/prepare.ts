@@ -34,8 +34,6 @@ async function indexTheDocument(filePath: string) {
   );
 
   console.log("Stored one chunk successfully");
-
-  break; // abhi sirf test ke liye ek hi store karein
 }
 
 }
