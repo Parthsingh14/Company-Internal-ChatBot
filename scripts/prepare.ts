@@ -1,5 +1,7 @@
 import "dotenv/config";
 
+import { storeVector } from "./vectorStore";
+import { randomUUID } from "crypto";
 import { PDFLoader } from "@langchain/community/document_loaders/fs/pdf";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import { createEmbedding } from "./embedding";
@@ -17,15 +19,25 @@ async function indexTheDocument(filePath: string) {
 
   const splitDocs = await splitter.splitDocuments(docs);
 
-  for(const doc of splitDocs) {
-    const embedding = await createEmbedding(doc.pageContent);
-    console.log("Embedding length", embedding?.length);
-    break;
-  }
+  for (const doc of splitDocs) {
+  const embedding = await createEmbedding(doc.pageContent);
 
+  console.log("Embedding length:", embedding?.length);
 
-  // console.log("Total chunks:", splitDocs.length);
-  // console.log(splitDocs[0]);
+  await storeVector(
+    randomUUID(),
+    embedding!,
+    {
+      text: doc.pageContent,
+      source: doc.metadata.source,
+    }
+  );
+
+  console.log("Stored one chunk successfully");
+
+  break; // abhi sirf test ke liye ek hi store karein
+}
+
 }
 
 const filepath = path.join(process.cwd(), "data/documents/nexus.pdf");
