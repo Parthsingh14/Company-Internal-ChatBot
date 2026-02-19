@@ -30,3 +30,19 @@ export async function storeVector(
 
   console.log("Vector stored:", id);
 }
+
+export async function querySimilar(
+  embedding: number[],
+  topK: number
+) {
+  const response = await index.namespace("default").query({
+    vector: embedding,
+    topK,
+    includeValues: false,
+    includeMetadata: true,
+  });
+
+  return response.matches ?? [];
+}
+
+
